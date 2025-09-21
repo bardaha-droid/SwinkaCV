@@ -90,12 +90,15 @@ const App = () => {
 
       if (!response.ok) {
         const payload = await safeJson(response);
+        setResumeText('');
+        setCoverLetter('');
         throw new Error(payload?.error || 'Nie udało się odczytać pliku.');
       }
 
       const data = await response.json();
       const extractedText = data.resume_text || '';
       setResumeText(extractedText);
+      setCoverLetter('');
       setNotice(`${file.name} wczytano. Tworzymy list motywacyjny…`);
     } catch (err) {
       console.error(err);
