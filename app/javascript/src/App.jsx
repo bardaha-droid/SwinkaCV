@@ -265,9 +265,8 @@ const App = () => {
       <header className="app-header">
         <div className="brand-wrap">
           <span className="brand-title">Swinka.CV</span>
-          <span className="brand-domain">Swinka.CV</span>
         </div>
-        <p>Dodaj swoje CV i otrzymaj profesjonalny list motywacyjny po polsku.</p>
+        <p className="brand-tagline">Dodaj swoje CV i otrzymaj profesjonalny list motywacyjny po polsku.</p>
       </header>
 
       <div className="workspace">

@@ -56,13 +56,6 @@ body {
   margin-bottom: 6px;
 }
 
-.app-header p {
-  margin: 0;
-  color: #3f3f46;
-  max-width: 480px;
-  font-size: 15px;
-}
-
 .brand-wrap {
   display: flex;
   flex-direction: column;
@@ -78,10 +71,12 @@ body {
   font-weight: 700;
 }
 
-.brand-domain {
-  font-size: clamp(12px, 1.4vw, 14px);
-  font-weight: 500;
-  color: #6b7280;
+.brand-tagline {
+  margin: 2px 0 0;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #0b0b0f;
 }
 
 .file-input {
