@@ -270,9 +270,10 @@ body {
   width: 100%;
   min-height: 420px;
   resize: vertical;
-  padding: 0;
-  border: none;
-  background: transparent;
+  padding: 18px;
+  border-radius: 6px;
+  border: 1px solid #d4d4d8;
+  background: #ffffff;
   color: #1f1f1f;
   font-size: 15px;
   line-height: 1.7;
@@ -282,8 +283,8 @@ body {
 
 .cover-letter-textarea:focus {
   outline: none;
-  border: none;
-  box-shadow: none;
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.14);
 }
 
 .cover-letter-textarea.muted {
