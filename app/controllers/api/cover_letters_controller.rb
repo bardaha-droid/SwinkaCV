@@ -9,11 +9,15 @@ module Api
         return
       end
 
+      ResumeModerator.validate!(resume_text)
+
       generator = CoverLetterGenerator.new(resume_text: resume_text, job_description: job_description)
       cover_letter = generator.call
 
       render json: { cover_letter: cover_letter }
     rescue CoverLetterGenerator::GenerationError => e
+      render json: { error: e.message }, status: :unprocessable_entity
+    rescue ResumeModerator::Rejected => e
       render json: { error: e.message }, status: :unprocessable_entity
     rescue StandardError => e
       Rails.logger.error("Cover letter generation failed: #{e.message}")

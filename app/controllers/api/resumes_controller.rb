@@ -10,9 +10,12 @@ module Api
 
       parser = ResumeParser.new(uploaded_file)
       resume_text = parser.extract_text
+      ResumeModerator.validate!(resume_text)
 
       render json: { resume_text: resume_text }
     rescue ResumeParser::UnsupportedFile => e
+      render json: { error: e.message }, status: :unprocessable_entity
+    rescue ResumeModerator::Rejected => e
       render json: { error: e.message }, status: :unprocessable_entity
     rescue StandardError => e
       Rails.logger.error("Resume parsing failed: #{e.message}")
