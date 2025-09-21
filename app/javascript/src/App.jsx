@@ -99,7 +99,7 @@ const App = () => {
       const extractedText = data.resume_text || '';
       setResumeText(extractedText);
       setCoverLetter('');
-      setNotice(`${file.name} wczytano. Tworzymy list motywacyjny…`);
+      setNotice(`${file.name} wczytano. Swinka.CV przygotowuje list motywacyjny…`);
     } catch (err) {
       console.error(err);
       setError(err.message || 'Przesyłanie nie powiodło się.');
@@ -119,7 +119,7 @@ const App = () => {
     setDownloadMenuOpen(false);
     setError('');
     setGenerating(true);
-    setNotice('Analizujemy CV i piszemy list motywacyjny…');
+    setNotice('Swinka.CV analizuje CV i pisze list motywacyjny…');
 
     try {
       const response = await fetch('/api/cover_letters', {
@@ -295,7 +295,7 @@ const App = () => {
               >
                 {uploading ? 'Wczytywanie…' : 'Prześlij CV'}
               </button>
-              <p>Obsługujemy PDF oraz DOCX. Po wczytaniu zaczniemy pisać list motywacyjny.</p>
+              <p>Swinka.CV obsługuje PDF oraz DOCX. Po wczytaniu natychmiast zaczyna się pisanie listu.</p>
             </div>
           </div>
 
@@ -313,7 +313,7 @@ const App = () => {
             <div className="cover-letter-surface">
               {generating && !coverLetter && (
                 <div className="cover-letter-placeholder">
-                  <p>Analizujemy Twoje CV i przygotowujemy spersonalizowany list motywacyjny…</p>
+                  <p>Swinka.CV analizuje Twoje CV i przygotowuje spersonalizowany list motywacyjny…</p>
                 </div>
               )}
 
@@ -331,7 +331,7 @@ const App = () => {
                   ))}
 
                   {generating && (
-                    <div className="regenerating-pill">Aktualizujemy na podstawie ostatnich zmian…</div>
+                    <div className="regenerating-pill">Swinka.CV aktualizuje treść na podstawie ostatnich zmian…</div>
                   )}
                 </div>
               )}
