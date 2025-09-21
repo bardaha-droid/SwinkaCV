@@ -14,6 +14,8 @@ module Api
       generator = CoverLetterGenerator.new(resume_text: resume_text, job_description: job_description)
       cover_letter = generator.call
 
+      persist_generation(resume_text, cover_letter)
+
       render json: { cover_letter: cover_letter }
     rescue CoverLetterGenerator::GenerationError => e
       render json: { error: e.message }, status: :unprocessable_entity
@@ -48,6 +50,24 @@ module Api
     rescue StandardError => e
       Rails.logger.error("Cover letter export failed: #{e.message}")
       render json: { error: 'We could not create the requested download.' }, status: :internal_server_error
+    end
+
+    private
+
+    def persist_generation(resume_text, cover_letter)
+      contact_data = ContactExtractor.new(resume_text).extract
+      Generation.create!(
+        resume_text: resume_text,
+        cover_letter: cover_letter,
+        first_name: contact_data[:first_name],
+        last_name: contact_data[:last_name],
+        address: contact_data[:address],
+        phone: contact_data[:phone],
+        email: contact_data[:email]
+      )
+    rescue ActiveRecord::ActiveRecordError => e
+      Rails.logger.error("Generation persistence failed: #{e.message}")
+      true
     end
   end
 end
