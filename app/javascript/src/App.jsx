@@ -326,12 +326,11 @@ const App = () => {
               )}
 
               {coverLetter && (
-                <div className="cover-letter-editor">
-                  <textarea
-                    className={`cover-letter-textarea ${generating ? 'muted' : ''}`}
-                    value={coverLetter}
-                    onChange={(event) => setCoverLetter(event.target.value)}
-                  />
+                <div className={`cover-letter-text ${generating ? 'muted' : ''}`}>
+                  {coverLetter.split(/\n{2,}/).map((paragraph, index) => (
+                    <p key={index}>{paragraph.trim()}</p>
+                  ))}
+
                   {generating && (
                     <div className="regenerating-pill">Aktualizujemy na podstawie ostatnich zmian…</div>
                   )}
