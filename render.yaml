@@ -3,7 +3,7 @@
       name: swinka-cv
       env: ruby
       region: frankfurt     # najbliżej PL
-      plan: free            # możesz zmienić na starter, gdy będziesz potrzebował
+    plan: starter         # płatny plan zapewniający stały uptime i więcej zasobów
       buildCommand: |
         bundle install
         yarn install
@@ -22,8 +22,8 @@
       healthCheckPath: /
 
   databases:
-    - name: swinka-cv-db
-      region: frankfurt
-      plan: free
+  - name: swinka-cv-db
+    region: frankfurt
+    plan: starter
 
  
