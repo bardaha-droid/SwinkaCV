@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :generations, only: %i[index show]
+  end
+
   root 'spa#index'
   get '*path', to: 'spa#index', constraints: ->(request) { !request.xhr? && request.format.html? }
 end

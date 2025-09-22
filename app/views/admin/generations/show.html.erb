@@ -1,0 +1,42 @@
+<section class="admin-container">
+  <p><%= link_to '← Wróć do listy', admin_generations_path, class: 'admin-link' %></p>
+
+  <h1>Szczegóły generowania ##<%= @generation.id %></h1>
+
+  <dl class="admin-details">
+    <div>
+      <dt>Imię</dt>
+      <dd><%= @generation.first_name.presence || '—' %></dd>
+    </div>
+    <div>
+      <dt>Nazwisko</dt>
+      <dd><%= @generation.last_name.presence || '—' %></dd>
+    </div>
+    <div>
+      <dt>E-mail</dt>
+      <dd><%= @generation.email.presence || '—' %></dd>
+    </div>
+    <div>
+      <dt>Telefon</dt>
+      <dd><%= @generation.phone.presence || '—' %></dd>
+    </div>
+    <div>
+      <dt>Adres</dt>
+      <dd><%= simple_format(@generation.address.presence || '—') %></dd>
+    </div>
+    <div>
+      <dt>Utworzono</dt>
+      <dd><%= l(@generation.created_at, format: :long) %></dd>
+    </div>
+  </dl>
+
+  <article class="admin-card">
+    <h2>CV (tekst)</h2>
+    <pre><%= @generation.resume_text %></pre>
+  </article>
+
+  <article class="admin-card">
+    <h2>List motywacyjny</h2>
+    <pre><%= @generation.cover_letter %></pre>
+  </article>
+</section>

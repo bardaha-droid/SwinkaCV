@@ -1,0 +1,34 @@
+<section class="admin-container">
+  <h1>Wygenerowane listy motywacyjne</h1>
+
+  <p>
+    Wyświetlane są najnowsze wpisy (maksymalnie 100). Jeśli potrzebujesz pełnej historii, pobierz dane z bazy bezpośrednio.
+  </p>
+
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>E-mail</th>
+        <th>Telefon</th>
+        <th>Utworzono</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @generations.each do |generation| %>
+        <tr>
+          <td><%= generation.id %></td>
+          <td><%= generation.first_name.presence || '—' %></td>
+          <td><%= generation.last_name.presence || '—' %></td>
+          <td><%= generation.email.presence || '—' %></td>
+          <td><%= generation.phone.presence || '—' %></td>
+          <td><%= l(generation.created_at, format: :short) %></td>
+          <td><%= link_to 'Szczegóły', admin_generation_path(generation), class: 'admin-link' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
