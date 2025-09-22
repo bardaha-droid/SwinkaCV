@@ -320,7 +320,7 @@ const App = () => {
               {!generating && !coverLetter && (
                 <div className="cover-letter-placeholder">
                   <p>Tutaj pojawi się Twój list motywacyjny. Zacznij od wczytania CV.</p>
-                  <p>Zmiana CV w tym polu od razu odświeży treść listu.</p>
+                  <p>Zmiana w polu CV od razu odświeży treść listu motywacyjnego.</p>
                 </div>
               )}
 
