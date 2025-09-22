@@ -1,9 +1,9 @@
-  services:
-    - type: web
-      name: swinka-cv
-      env: ruby
-      region: frankfurt     # najbliżej PL
-    plan: starter         # płatny plan zapewniający stały uptime i więcej zasobów
+services:
+  - type: web
+    name: swinka-cv
+    env: ruby
+    region: frankfurt
+    plan: starter
       buildCommand: |
         bundle install
         yarn install
@@ -21,9 +21,13 @@
       autoDeploy: true
       healthCheckPath: /
 
-  databases:
+databases:
   - name: swinka-cv-db
     region: frankfurt
     plan: starter
+    databaseSecret: swinka-cv-db-url
+
+domains:
+  - name: swinka.cv
 
  
