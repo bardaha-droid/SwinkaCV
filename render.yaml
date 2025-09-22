@@ -16,6 +16,8 @@
           sync: false
         - key: OPENAI_MODEL
           value: gpt-4.1    # lub Twój domyślny model
+        - key: NODE_OPTIONS
+          value: --openssl-legacy-provider
       autoDeploy: true
       healthCheckPath: /
 
