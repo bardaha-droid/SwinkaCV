@@ -1,5 +1,7 @@
 require 'caracal'
 require 'prawn'
+require 'open-uri'
+require 'fileutils'
 
 class CoverLetterExporter
   class UnsupportedFormat < StandardError; end
@@ -49,12 +51,33 @@ class CoverLetterExporter
         Rails.root.join('vendor/assets/fonts/SwinkaCV-Regular.ttf'),
         '/Library/Fonts/Arial Unicode.ttf',
         '/System/Library/Fonts/Supplemental/Arial Unicode.ttf',
-        '/Library/Fonts/NotoSans-Regular.ttf'
-      ]
+        '/Library/Fonts/NotoSans-Regular.ttf',
+        downloaded_font_path
+      ].compact
 
       match = candidate_files.find { |path| File.exist?(path) }
       match&.to_s
     end
   end
   private_class_method :unicode_font_path
+
+  def self.downloaded_font_path
+    tmp_dir = Rails.root.join('tmp', 'fonts')
+    FileUtils.mkdir_p(tmp_dir)
+    target = tmp_dir.join('NotoSans-Regular.ttf')
+
+    return target if File.exist?(target)
+
+    font_url = 'https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/NotoSans/NotoSans-Regular.ttf'
+
+    URI.open(font_url) do |remote|
+      File.open(target, 'wb') { |file| file.write(remote.read) }
+    end
+
+    target
+  rescue StandardError => e
+    Rails.logger.error("Failed to download Unicode font: #{e.message}")
+    nil
+  end
+  private_class_method :downloaded_font_path
 end
