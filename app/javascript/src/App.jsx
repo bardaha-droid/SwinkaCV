@@ -313,6 +313,7 @@ const App = () => {
             <div className="cover-letter-surface">
               {generating && !coverLetter && (
                 <div className="cover-letter-placeholder">
+                  <span className="spinner" aria-hidden="true" />
                   <p>Swinka.CV analizuje Twoje CV i przygotowuje spersonalizowany list motywacyjny…</p>
                 </div>
               )}
@@ -331,7 +332,10 @@ const App = () => {
                   ))}
 
                   {generating && (
-                    <div className="regenerating-pill">Swinka.CV aktualizuje treść na podstawie ostatnich zmian…</div>
+                    <div className="regenerating-pill">
+                      <span className="spinner spinner--small" aria-hidden="true" />
+                      <span>Swinka.CV aktualizuje treść na podstawie ostatnich zmian…</span>
+                    </div>
                   )}
                 </div>
               )}
